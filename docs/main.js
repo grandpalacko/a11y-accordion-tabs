@@ -115,7 +115,14 @@
                 this.selectedTab = i;
             }
 
-            this._hide(i);
+            if (
+                this.accordionTriggers[i].getAttribute("aria-expanded") ==
+                "false"
+            ) {
+                this._hide(i);
+            } else {
+                this._show(i);
+            }
         }
 
         for (var i = 0; i < this.accordionTriggersLength; i++) {
@@ -250,9 +257,8 @@
 
         this.accordionTriggers[index].setAttribute("aria-expanded", true);
 
-        var panelContent = this.tabPanels[index].getElementsByClassName(
-            "content"
-        )[0];
+        var panelContent =
+            this.tabPanels[index].getElementsByClassName("content")[0];
         panelContent.setAttribute("aria-hidden", false);
         panelContent.classList.remove("is-hidden");
         panelContent.classList.add("is-open");
@@ -272,9 +278,8 @@
 
         this.accordionTriggers[index].setAttribute("aria-expanded", false);
 
-        var panelContent = this.tabPanels[index].getElementsByClassName(
-            "content"
-        )[0];
+        var panelContent =
+            this.tabPanels[index].getElementsByClassName("content")[0];
         panelContent.setAttribute("aria-hidden", true);
         panelContent.classList.remove("is-open");
         panelContent.classList.add("is-hidden");
